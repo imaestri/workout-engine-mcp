@@ -13,3 +13,7 @@ out/
 .settings
 .classpath
 .factorypath
+!src/main/java/com/isaque/workoutengine/adapters/out/
+!src/main/java/com/isaque/workoutengine/adapters/out/**
+!src/main/java/com/isaque/workoutengine/ports/out/
+!src/main/java/com/isaque/workoutengine/ports/out/**
