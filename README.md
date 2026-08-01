@@ -1,51 +1,41 @@
-## Micronaut 5.0.6 Documentation
+# Workout Engine
 
-- [User Guide](https://docs.micronaut.io/5.0.6/guide/index.html)
-- [API Reference](https://docs.micronaut.io/5.0.6/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/5.0.6/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+Workout Engine is a learning project for building a real backend with Java and Micronaut using Hexagonal Architecture and Clean Architecture.
 
-- [Micronaut Maven Plugin documentation](https://micronaut-projects.github.io/micronaut-maven-plugin/latest/)
-## Feature micronaut-aot documentation
+The first feature is the registration of a practitioner profile.
 
+## Current Structure
 
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
+```mermaid
+flowchart TD
+    subgraph IN[Inbound / REST]
+        REQ[RegisterPractitionerProfileRequestDto]
+        CTRL[PractitionerProfileController]
+        RES[RegisterPractitionerProfileResponseDto]
+    end
 
+    subgraph APP[Application]
+        SVC[RegisterPractitionerProfileService]
+    end
 
-## Feature openapi documentation
+    subgraph DOM[Domain]
+        PROFILE[PractitionerProfile]
+        LEVEL[ExperienceLevel]
+        GOAL[TrainingGoal]
+    end
 
+    subgraph OUT[Outbound / Persistence]
+        PORT[PractitionerProfileRepository]
+        MEM[InMemoryPractitionerProfileRepository]
+    end
 
-- [Micronaut OpenAPI Support documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
+    REQ --> CTRL --> SVC --> PROFILE --> PORT --> MEM
+    MEM --> PORT --> RES
+```
 
+## Documentation
 
-- [https://www.openapis.org](https://www.openapis.org)
-
-
-## Feature serialization-jackson documentation
-
-
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
-
-
-## Feature maven-enforcer-plugin documentation
-
-
-- [https://maven.apache.org/enforcer/maven-enforcer-plugin/](https://maven.apache.org/enforcer/maven-enforcer-plugin/)
-
-
-## Feature validation documentation
-
-
-- [Micronaut Validation documentation](https://micronaut-projects.github.io/micronaut-validation/latest/guide/)
-
-
-## Feature swagger-ui documentation
-
-
-- [Micronaut Swagger UI documentation](https://micronaut-projects.github.io/micronaut-openapi/latest/guide/index.html)
-
-
-- [https://swagger.io/tools/swagger-ui/](https://swagger.io/tools/swagger-ui/)
-
+- [Domain notes](docs/domain/practitioner-profile.md)
+- [Use case notes](docs/use-cases/register-practitioner-profile.md)
+- [Architecture decisions](docs/decisions/0001-profile-first.md)
 
