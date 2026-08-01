@@ -6,7 +6,10 @@ import com.isaque.workoutengine.domain.practitioner.PractitionerProfile;
 import io.micronaut.http.HttpResponse;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.validation.Validated;
+import jakarta.validation.Valid;
 
+@Validated
 @Controller("/practitioner-profiles")
 public class PractitionerProfileController {
 
@@ -17,7 +20,7 @@ public class PractitionerProfileController {
 	}
 
 	@Post
-	public HttpResponse<PractitionerProfileResponseDto> register(RegisterPractitionerProfileRequestDto requestDto) {
+	public HttpResponse<PractitionerProfileResponseDto> register(@Valid RegisterPractitionerProfileRequestDto requestDto) {
 		var dto = toApplicationDto(requestDto);
 		var profile = registerPractitionerProfileService.register(dto);
 
